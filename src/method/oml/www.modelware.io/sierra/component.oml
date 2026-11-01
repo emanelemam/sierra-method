@@ -63,4 +63,18 @@ vocabulary <https://www.modelware.io/sierra/component#> as component {
         reverse isTransferedBy
     ]
 
+    @rdfs:comment "Indicates a component depends on another for power."
+    relation dependsOnPower [
+        from Component
+        to Component
+    ]
+
+    @rdfs:comment "Rule inferring power dependency from energy transfers across connected ports."
+    rule PowerDependency [
+        Connection(p1, c, p2) &
+        portOf(p1, src) & portOf(p2, tgt) &
+        transfers(c, i) & Energy(i)
+        -> dependsOnPower(tgt, src)
+    ]
+
 }

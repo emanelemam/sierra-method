@@ -57,7 +57,7 @@ vocabulary <https://www.modelware.io/sierra/base#> as base {
     ]
 
     scalar property priority [
-        domain Prioritized
+       domain Prioritized, Element
         range Priority
         functional
     ]
